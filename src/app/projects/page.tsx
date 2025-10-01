@@ -1,11 +1,10 @@
 import React from 'react'
-import Navbar from './Components/Navbar'
 
 const page = () => {
   return (
-    <main>
-
-    </main>
+    <div>
+      holi projects
+    </div>
   )
 }
 
