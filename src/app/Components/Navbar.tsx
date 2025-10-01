@@ -8,12 +8,11 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
     const router = useRouter();
 
-  return (
+  return (  
     <div className='navbar bg-slate-400 shadow-md sticky top-0 z-50'>
       <div className='navbar-start'>    
-
       </div>
-      <div className='navbar-center flex items-center justify-between'>
+      <div className='navbar-center flex items-center justify-between gap-25'>
         <button className='linkClassNavBar' onClick={() => router.push("/")}> HOME </button>
         <button className='linkClassNavBar' onClick={() => router.push("/skills")}> SKILLS </button>
         <button className='linkClassNavBar' onClick={() => router.push("/projects")}> PROJECTS </button>
