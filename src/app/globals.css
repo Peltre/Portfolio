@@ -8,6 +8,6 @@
         border-0 hover:border-0 hover:bg-transparent hover:shadow-none
         focus:outline-none focus:ring-0 active:border-0 active:bg-transparent
         transition-none
-        hover:text-purple-600
+        hover:text-purple-200
   }
 }
