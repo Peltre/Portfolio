@@ -1,22 +1,64 @@
 "use client";
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Proj1 from './ProjectSlides/Proj1';
 import Proj2 from './ProjectSlides/Proj2';
 
 const ProjectCarousel = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const carouselRef = useRef<HTMLDivElement>(null);
 
-    const handleSlideSwitching = (E: React.MouseEvent<HTMLButtonElement>, slideId:string) => {
-        E.preventDefault();
-        const targetElement = document.querySelector(slideId);
+    // Array containing slide ids
+    const slideIds = ['#proj1', '#proj2'];
+    const totalSlides = slideIds.length;
+
+    const handleSlideSwitching = (direction: 'next' | 'prev') => {
+        let newSlideIndex: number;
+
+        if (direction === 'next') {
+            newSlideIndex = (currentSlide + 1) % totalSlides;
+        } else {
+            newSlideIndex = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+        }
+
+        const targetElement = document.querySelector(slideIds[newSlideIndex]);
         if (targetElement) {
             targetElement.scrollIntoView({
                 behavior: 'smooth',
                 block: 'nearest',
                 inline: 'center'
             });
+            setCurrentSlide(newSlideIndex);
         }
     };
+
+    useEffect(() => {
+        const carousel = carouselRef.current;
+        if (!carousel) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const slideIndex = slideIds.findIndex(
+                            id => id === `#${entry.target.id}`
+                        );
+                        if (slideIndex !== -1) {
+                            setCurrentSlide(slideIndex);
+                        }
+                    }
+                });
+            },
+            { threshold: 0.5, root: carousel }
+        );
+
+        slideIds.forEach(id => {
+            const element = document.querySelector(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         if (window.location.hash) {
@@ -35,7 +77,7 @@ const ProjectCarousel = () => {
             
             {/* Button to go to Previous Slide (Proj2) */}
             <button 
-                onClick={(e) => handleSlideSwitching(e, '#proj2')} // When on Proj1, '❮' takes you to Proj2 (if using a looping structure)
+                onClick={() => handleSlideSwitching('prev')} // When on Proj1, '❮' takes you to Proj2 (if using a looping structure)
                 className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
             >
                 ❮
@@ -43,7 +85,7 @@ const ProjectCarousel = () => {
             
             {/* Button to go to Next Slide (Proj2) */}
             <button 
-                onClick={(e) => handleSlideSwitching(e, '#proj1')} 
+                onClick={() => handleSlideSwitching('next')}
                 className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
             >
                 ❯
