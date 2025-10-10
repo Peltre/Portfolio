@@ -1,16 +1,18 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react'
-import Proj1 from './ProjectSlides/Proj1';
-import Proj2 from './ProjectSlides/Proj2';
+import ProjectSlide from './ProjectSlides/ProjectSlide';
+import { ProjectData } from './ProjectSlides/types';
 
-const ProjectCarousel = () => {
+interface ProjectSlideProps {
+    projects: ProjectData[];
+}
+
+const ProjectCarousel: React.FC<ProjectSlideProps> = ({ projects }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
 
-    // Array containing slide ids
-    const slideIds = ['#proj1', '#proj2'];
-    const totalSlides = slideIds.length;
+    const totalSlides = projects.length;
 
     const handleSlideSwitching = (direction: 'next' | 'prev') => {
         let newSlideIndex: number;
@@ -21,7 +23,7 @@ const ProjectCarousel = () => {
             newSlideIndex = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
         }
 
-        const targetElement = document.querySelector(slideIds[newSlideIndex]);
+        const targetElement = document.getElementById(projects[newSlideIndex].id);
         if (targetElement) {
             targetElement.scrollIntoView({
                 behavior: 'smooth',
@@ -40,8 +42,8 @@ const ProjectCarousel = () => {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const slideIndex = slideIds.findIndex(
-                            id => id === `#${entry.target.id}`
+                        const slideIndex = projects.findIndex(
+                            project => project.id === `#${entry.target.id}`
                         );
                         if (slideIndex !== -1) {
                             setCurrentSlide(slideIndex);
@@ -52,13 +54,13 @@ const ProjectCarousel = () => {
             { threshold: 0.5, root: carousel }
         );
 
-        slideIds.forEach(id => {
-            const element = document.querySelector(id);
+        projects.forEach(project => {
+            const element = document.getElementById(project.id);
             if (element) observer.observe(element);
         });
 
         return () => observer.disconnect();
-    }, []);
+    }, [projects]);
 
     useEffect(() => {
         if (window.location.hash) {
@@ -67,31 +69,33 @@ const ProjectCarousel = () => {
     }, []);
 
   return (
-    <div className='carousel w-full h-150 overflow-hidden'>
-        {/* First Project Slide - Knights of Dango */}
-        <Proj1 />
-        <Proj2 />
-    <div className='absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20'> 
-            {/* Button to go to Proj2 (Next) -> Proj1 (Previous) */}
-            {/* Targeting the IDs from Proj1.tsx and Proj2.tsx: #proj1 and #proj2 */}
-            
-            {/* Button to go to Previous Slide (Proj2) */}
-            <button 
-                onClick={() => handleSlideSwitching('prev')} // When on Proj1, '❮' takes you to Proj2 (if using a looping structure)
-                className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
-            >
-                ❮
-            </button>
-            
-            {/* Button to go to Next Slide (Proj2) */}
-            <button 
-                onClick={() => handleSlideSwitching('next')}
-                className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
-            >
-                ❯
-            </button>
+    <div className='relative  w-full'>
+        <div ref={carouselRef} className='carousel w-full h-150 overflow-hidden relative'>
+            {/* Render slides dynamically */}
+            {projects.map((project) => (
+                <ProjectSlide key={project.id} project={project} />
+            ))}
         </div>
-    </div>
+        
+        {/* Navigation Buttons */}
+        <div className='absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20'>             
+                {/* Button to go to Previous Slide */}
+                <button 
+                    onClick={() => handleSlideSwitching('prev')} // When on Proj1, '❮' takes you to Proj2 (if using a looping structure)
+                    className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
+                >
+                    ❮
+                </button>
+                
+                {/* Button to go to Next Slide */}
+                <button 
+                    onClick={() => handleSlideSwitching('next')}
+                    className='imgCarouselButton btn btn-circle' // Added DaisyUI classes for style
+                >
+                    ❯
+                </button>
+            </div>
+        </div>
   )
 }
 
