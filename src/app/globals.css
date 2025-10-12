@@ -10,4 +10,19 @@
         transition-none
         hover:text-purple-200
   }
+
+  .pixelart {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .animate-slide {
+    animation: slide 10s linear infinite;
+  }
+  
+}
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }

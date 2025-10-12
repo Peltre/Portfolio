@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from './Components/Navbar'
+import ProjectCarousel from './Components/ProjectSlides/ProjectCarousel'
+import { projectsData } from './Components/ProjectSlides/Utils/projectsData'
 
 const page = () => {
   return (
     <main>
-
+      <ProjectCarousel projects={projectsData}/>
     </main>
   )
 }
