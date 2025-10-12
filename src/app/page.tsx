@@ -1,6 +1,6 @@
 import React from 'react'
-import ProjectCarousel from './Components/ProjectCarousel'
-import { projectsData } from './Components/ProjectSlides/projectsData'
+import ProjectCarousel from './Components/ProjectSlides/ProjectCarousel'
+import { projectsData } from './Components/ProjectSlides/Utils/projectsData'
 
 const page = () => {
   return (

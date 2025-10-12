@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProjectData } from './types'
+import { ProjectData } from './Utils/types'
 
 interface ProjectSlideProps {
     project: ProjectData

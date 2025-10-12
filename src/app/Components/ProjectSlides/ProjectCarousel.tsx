@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react'
-import ProjectSlide from './ProjectSlides/ProjectSlide';
-import { ProjectData } from './ProjectSlides/types';
+import ProjectSlide from './ProjectSlide';
+import { ProjectData } from './Utils/types';
 
 interface ProjectSlideProps {
     projects: ProjectData[];
