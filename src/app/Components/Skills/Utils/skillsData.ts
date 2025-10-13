@@ -1,6 +1,7 @@
 // File to manage the information rendered under the technologies & skills
+import { Skill } from './skill'
 
-export const skillsData = [
+export const skillsData: Skill[] = [
     {
         id: 1,
         name: 'React',

@@ -1,13 +1,8 @@
 import React from 'react'
+import { Skill } from './Utils/skill'
 
 interface SkillBoxProps {
-    skill: {
-        id: number
-        name: string
-        icon: string
-        description: string
-        level?: string
-    }
+    skill: Skill
 }
 
 const SkillBox = ({ skill }: SkillBoxProps) => {
