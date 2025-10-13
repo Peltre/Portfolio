@@ -9,11 +9,11 @@ import { Skill } from './Utils/skill'
 const Skills = () => {
     const [selectedSkill, setSelectedSkill] = useState<Skill | null>(skillsData[0])
   return (
-    <div className='min-h-screen'>
-      <div className='container mx-0 lg:mx-35 mt-15 py-12 lg:py-16'>
+    <div className='min-h-screen p-8'>
+      <div className='container mx-0 lg:mx-27 mt-15 py-12 lg:py-16'>
         {/* Grid */}
         <div className='flex justify-center'>    
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start'>
                 {/* Left Side - Text Container */}
                 <div className='flex flex-col'>
                     <h1 className='text-white font-bold text-4xl'>Skills</h1>
@@ -23,7 +23,7 @@ const Skills = () => {
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                         nisi ut aliquip ex ea commodo consequat. 
                     </p>
-                    <div className='grid grid-cols-2 lg:grid-cols-6 gap-4'>
+                    <div className='grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-6 gap-3 sm:gap-4'>
                         {skillsData.map((skill) =>  (
                             <SkillBox 
                                 key={skill.id}

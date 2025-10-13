@@ -11,7 +11,7 @@ const SkillBox = ({ skill, isSelected, onClick }: SkillBoxProps) => {
   return (
     <div
         onClick={onClick}
-        className={`rounded-sm h-16 w-16 flex items-center justify-center cursor-pointer transition-all hover:scale-110 p-2 ${
+        className={`rounded-sm h-8 w-8 lg:h-16 lg:w-16 flex items-center justify-center cursor-pointer transition-all hover:scale-110 p-2 ${
             isSelected
                 ? 'bg-amber-400 shadow-lg ring-2 ring-amber-500'
                 : 'bg-white hover:shadow-lg'
