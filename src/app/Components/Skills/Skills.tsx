@@ -10,37 +10,38 @@ const Skills = () => {
     const [selectedSkill, setSelectedSkill] = useState<Skill | null>(skillsData[0])
   return (
     <div className='min-h-screen'>
-      <div className='container mx-auto px-6 py-12 lg:py-16'>
-        <h1 className='text-white font-bold text-4xl'>Skills</h1>
-        {/* Left Side - Text Container */}
-        <div className='grid grid-cols-2 gap-8 items-center'>
-            <div className='flex flex-col'>
-                <p className='text-lg pt-5 mb-10'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. 
-                </p>
-                <div className='grid grid-cols-6 gap-y-10'>
-                    {skillsData.map((skill) =>  (
-                        <SkillBox 
-                            key={skill.id}
-                            skill={skill}
-                            isSelected={selectedSkill?.id === skill.id}
-                            onClick={() => setSelectedSkill(skill)}
-                        />
-                    ))}
-                </div> 
+      <div className='container mx-0 lg:mx-35 mt-15 py-12 lg:py-16'>
+        {/* Grid */}
+        <div className='flex justify-center'>    
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
+                {/* Left Side - Text Container */}
+                <div className='flex flex-col'>
+                    <h1 className='text-white font-bold text-4xl'>Skills</h1>
+                    <p className='text-lg pt-5 mb-10'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. 
+                    </p>
+                    <div className='grid grid-cols-2 lg:grid-cols-6 gap-4'>
+                        {skillsData.map((skill) =>  (
+                            <SkillBox 
+                                key={skill.id}
+                                skill={skill}
+                                isSelected={selectedSkill?.id === skill.id}
+                                onClick={() => setSelectedSkill(skill)}
+                            />
+                        ))}
+                    </div> 
             </div>
 
             {/* Right Side - Skill Detail */}
-            <div className='flex items-center justify-center w-full'>
+            <div className='flex items-center justify-center lg:justify-start'>
                 {selectedSkill && (
-                <div className='w-full max-w-md mx-auto'>
                     <SkillDetail skill={selectedSkill} />
-                </div>
                 )}
           </div>
+        </div>
         </div>
       </div>
     </div>
