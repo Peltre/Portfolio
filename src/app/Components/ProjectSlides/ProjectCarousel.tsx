@@ -69,7 +69,7 @@ const ProjectCarousel: React.FC<ProjectSlideProps> = ({ projects }) => {
     }, []);
 
   return (
-    <div className='relative  w-full'>
+    <div className='relative w-full'>
         <div ref={carouselRef} className='carousel w-full h-150 overflow-hidden relative'>
             {/* Render slides dynamically */}
             {projects.map((project) => (
