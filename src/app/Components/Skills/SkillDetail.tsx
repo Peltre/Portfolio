@@ -7,10 +7,10 @@ interface SkillDetailProps {
 
 const SkillDetail = ({ skill }: SkillDetailProps) => {
   return (
-    <div>
+    <div className='flex flex-col items-center w-full'>
       {/* Big Icon */}
       <div className='flex justify-center mb-6'>
-        <div className='bg-gradient-to-br from-amber-100 to amber-200 rounded-sm p-8 shadow-lg'>
+        <div className='bg-gradient-to-br from-amber-100 to-amber-200 rounded-sm p-8 shadow-lg'>
             <img
                 src={skill.icon}
                 alt={skill.name}
@@ -44,7 +44,7 @@ const SkillDetail = ({ skill }: SkillDetailProps) => {
 
         <div className='w-full bg-gray-200 rounded-full h-2'>
             <div
-                className='bg-gradient-to-r from-amber-400 to-amber-600h-2 rounded-full transtion-all duration-500'
+                className='bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full transition-all duration-500'
                 style={{
                     width: skill.level === 'Advanced' ? '90%' :
                            skill.level === 'Intermediate' ? '60%' : '30%' 
