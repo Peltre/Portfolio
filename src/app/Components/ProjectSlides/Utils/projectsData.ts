@@ -1,6 +1,4 @@
 import { ProjectData } from "./types";
-import P1 from "../../Assets/KoD/kod_bg_asset.png"
-
 
 export const projectsData: ProjectData[] = [
   {
