@@ -10,7 +10,7 @@ const Skills = () => {
     const [selectedSkill, setSelectedSkill] = useState<Skill | null>(skillsData[0])
   return (
     <div className='min-h-screen p-8'>
-      <div className='container mx-0 lg:mx-27 mt-15 py-12 lg:py-16'>
+      <div className='container mx-0 lg:mx-15 mt-15 py-12 lg:py-16'>
         {/* Grid */}
         <div className='flex justify-center'>    
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start'>
