@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react'
 import { ProjectData } from '../ProjectSlides/Utils/types'
-
+import ProjectCard from './ProjectCard';
 
 interface ProjectCarousel3DProps {
     projects: ProjectData[];
@@ -43,9 +45,9 @@ const ProjectSelector: React.FC<ProjectCarousel3DProps> = ({ projects }) => {
 const { prev, current, next } = getVisibleProjects();
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen flex items-center justify-center'>
         <div className='w-full max-w-7xl'>
-            <h1 className='text-4xl md:text-5xl font-bold text-white text-center mb-12'>
+            <h1 className='text-2xl md:text-5xl font-bold text-white text-center mb-12'>
                 Featured Projects
             </h1>
 
@@ -61,7 +63,7 @@ const { prev, current, next } = getVisibleProjects();
                     }}
                     onClick={() => handleSlideSwitching('prev')}
                 >
-                    {/*PLACEHOLDER FOR PROJECT CARD*/}
+                    <ProjectCard project={prev} isActive={false} />
                 </div>
 
                 {/* Current Selected Project (Center) */}
@@ -74,7 +76,7 @@ const { prev, current, next } = getVisibleProjects();
                         zIndex: 10
                     }}
                 >
-                    {/* PLACEHOLDER PROJ CARD PROJ={CURRENT} ISaCTIVE={TRUE} */}
+                    <ProjectCard project={current} isActive={true} />
                 </div>
 
                 {/* Next Project, (right) */}
@@ -87,7 +89,7 @@ const { prev, current, next } = getVisibleProjects();
                     }}
                     onClick={() => handleSlideSwitching('next')}
                 >
-                    {/* PLACEHOLDER FOR PROJECT CARD PROJ=NEXT ISACTIVE=FALSE */}
+                    <ProjectCard project={next} isActive={false} />
                 </div>
 
                 {/* SLIDE NAV BUTTONS */}
@@ -106,22 +108,6 @@ const { prev, current, next } = getVisibleProjects();
                 >
                     ❯
                 </button>
-
-                {/* Indicators (UX friendly) */}
-                <div className='flex justify-center gap-2 mt-8'>
-                    {projects.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`h-2 rounded-full transition-all duration-300
-                                ${index === currentSlide
-                                    ? 'w-8 bg-purple-400'
-                                    : 'w-2 bg-white/30 hover:bg-white/50'
-                                }`}
-                            aria-label={`Go to project ${index + 1}`}
-                        />
-                    ))}
-                </div>
             </div>
         </div>
 
