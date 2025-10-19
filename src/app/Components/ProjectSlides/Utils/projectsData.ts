@@ -16,5 +16,13 @@ export const projectsData: ProjectData[] = [
     imageSrc: '/images/placeholder.png',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
     link: 'https://tu-proyecto2.com',
+  },
+  {
+    id: 'proj3',
+    title: 'Proyecto 3',
+    description: 'Descripción de tu segundo proyecto. Aquí puedes explicar las características principales, los desafíos que enfrentaste y las soluciones que implementaste.',
+    imageSrc: '/images/LittleKnight.png',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
+    link: 'https://tu-proyecto2.com',
   }
 ];
